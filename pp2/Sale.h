@@ -1,5 +1,8 @@
 #pragma once
 #include "GenericObject.h"
+#include <string>
+using namespace std;
+
 class Sale :
     public GenericObject
 {

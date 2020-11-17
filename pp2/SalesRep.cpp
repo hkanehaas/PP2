@@ -1,4 +1,6 @@
 #include "SalesRep.h"
+#include <string>
+using namespace std;
 
 
 int SalesRep::CalculateBonus()

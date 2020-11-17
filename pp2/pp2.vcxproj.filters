@@ -27,7 +27,7 @@
     <ClCompile Include="Sale.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InputOutputReports.cpp">
+    <ClCompile Include="Clients.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +41,7 @@
     <ClInclude Include="Sale.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputOutputReports.h">
+    <ClInclude Include="Clients.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,6 @@
 #include "Sale.h"
+#include <string>
+using namespace std;
 
 
 int Sale::SetMonth(string month)

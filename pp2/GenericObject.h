@@ -1,5 +1,7 @@
 #pragma once
-class GenericObject
+#include <string>
+using namespace std;
+
 class GenericObject
 {
 public:

@@ -1,4 +1,6 @@
 #include "GenericObject.h"
+#include <string>
+using namespace std;
 
 
 void GenericObject::SetName(string name)
@@ -32,8 +34,6 @@ string GenericObject::GetDescriptor()
     return string();
 }
 
-
-int GenericObject::GetIntVar()
 int GenericObject::GetIntVar()
 {
     // TODO: Add your implementation code here.

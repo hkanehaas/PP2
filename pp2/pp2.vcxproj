@@ -139,15 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Clients.cpp" />
     <ClCompile Include="GenericObject.cpp" />
-    <ClCompile Include="InputOutputReports.cpp" />
     <ClCompile Include="pp2.cpp" />
     <ClCompile Include="Sale.cpp" />
     <ClCompile Include="SalesRep.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Clients.h" />
     <ClInclude Include="GenericObject.h" />
-    <ClInclude Include="InputOutputReports.h" />
     <ClInclude Include="Sale.h" />
     <ClInclude Include="SalesRep.h" />
   </ItemGroup>
