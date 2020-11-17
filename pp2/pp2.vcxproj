@@ -139,7 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GenericObject.cpp" />
     <ClCompile Include="pp2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GenericObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
