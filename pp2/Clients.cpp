@@ -4,10 +4,13 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <iomanip>
+#include <algorithm>
 using namespace std;
 
 void Clients::InputFile(string filePath) //Opens file, runs through and adds each line to the clients vector, closes file
 {
+    int vectorSize = clientList.size() - 1;
     string stringHolder; //holds for input string
     int intHolder; //holds input ints
     inputClientsFS.open(filePath); //attempts to open file
@@ -17,6 +20,7 @@ void Clients::InputFile(string filePath) //Opens file, runs through and adds eac
     }
 
     numLines = GetNumLines(filePath); //get the number of lines to input
+    clientList.resize(vectorSize + numLines);
 
 
     int i = 0;
@@ -87,17 +91,58 @@ void Clients::PrintClients()
 }
 void Clients::PrintSingleClient(string clientName)
 {
-    // TODO: Add your implementation code here.
+    for (int i = 0; i < numLines; ++i) {
+        if (clientName == clientList.at(i).GetName()) {
+            cout << "Name: " << clientList.at(i).GetName() << " Address: " << clientList.at(i).GetDescriptor()
+                << "Sales to date: " << clientList.at(i).GetIntVar() << endl;
+        }
+    }
 
 }
 void Clients::AddNewClient()
 {
-    // TODO: Add your implementation code here.
+    string name;
+    string address;
+    int salesToDate;    
+    int vectorSize = clientList.size() - 1;
+
+    cout << "Client name?" << endl;
+    inputClientsFS >> name; //retrieve client name from user
+
+    inputClientsFS >> address; //retrieve client name from user
+
+    inputClientsFS >> salesToDate; //retrieve client name from user
+    clientList.resize(vectorSize + 1);
+    vectorSize = clientList.size() - 1;
+    clientList.at(vectorSize).SetName(name); //set name into vector via client class
+    clientList.at(vectorSize).SetDescriptor(address); //set name into vector via client class
+    clientList.at(vectorSize).SetIntVar(salesToDate); //set name into vector via client class
+    cout << "New client: " << clientList.at(vectorSize).GetName() << " has been added." << endl;
+
+    return;
+
 
 }
 void Clients::UpdateClientInfo(string clientName)
 {
-    // TODO: Add your implementation code here.
+    char charHolder;
+    string stringHolder;
+    int intHolder;
+
+
+
+            cout << "Enter column to update: (n for name, a for address, s for sales to date, q for quit" << endl;
+        cin >> charHolder;
+
+        while (charHolder != 'q') {
+
+            if (charHolder == 'n') {
+                cout << "Enter update name:" << endl;
+                cin >> stringHolder;
+
+            }
+
+        }
 
 }
 

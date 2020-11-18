@@ -5,37 +5,37 @@ using namespace std;
 
 void GenericObject::SetName(string name)
 {
-    // TODO: Add your implementation code here.
+    ObjectName = name;
+    return;
 }
 
 
 void GenericObject::SetDescriptor(string description)
 {
-    // TODO: Add your implementation code here.
+    ObjectDescript = description;
+    return;
 }
 
 
 void GenericObject::SetIntVar(int objtInt)
 {
-    // TODO: Add your implementation code here.
+    objectIntVar = objtInt;
+    return;
 }
 
 
 string GenericObject::GetName()
 {
-    // TODO: Add your implementation code here.
-    return string();
+    return this->ObjectName;
 }
 
 
 string GenericObject::GetDescriptor()
 {
-    // TODO: Add your implementation code here.
-    return string();
+    return this->ObjectDescript;
 }
 
 int GenericObject::GetIntVar()
 {
-    // TODO: Add your implementation code here.
-    return 0;
+    return this->objectIntVar;
 }

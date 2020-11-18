@@ -12,5 +12,9 @@ public:
 	string GetName();
 	string GetDescriptor();
 	int GetIntVar();
+private:
+	string ObjectName;
+	string ObjectDescript;
+	int objectIntVar;
 };
 
