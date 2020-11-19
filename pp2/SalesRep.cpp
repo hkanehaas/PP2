@@ -5,13 +5,23 @@ using namespace std;
 
 int SalesRep::CalculateBonus()
 {
-    // TODO: Add your implementation code here.
+    int saleAmount;
+    float bonus;
+    while (saleAmount != -1) {
+        if (saleAmount >=20) {
+            bonus = saleAmount*10/100;
+        }
+        else if (saleAmount <20) {
+            bonus = saleAmount*5/100;
+        }
+        cout << "Sales bonus: "<<endl;
+  
     return 0;
 }
 
 
 int SalesRep::GetBonus()
 {
-    // TODO: Add your implementation code here.
+  
     return 0;
 }
