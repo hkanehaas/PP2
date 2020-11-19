@@ -7,6 +7,7 @@
 #include <algorithm>
 using namespace std;
 #include "Clients.h"
+#include "GenericObject.h"
 
 char TopMenu() {
 
@@ -19,8 +20,6 @@ char TopMenu() {
 	cout << "r - Sales Report Menu" << endl;
 	cout << "q - quit" << endl;		
 	cin >> topSelection;
-
-
 
 	return topSelection;
 }
@@ -45,14 +44,23 @@ char ClientMenu() {
 
 
 
-
-
 int main()
 {
 
 	char menuSelection = TopMenu(); //get initial menu char
 	string filepath;
-	Clients clientList;
+    Clients clientList; //Testing out the generic object class DELETE THIS SECTION
+/*		GenericObject objct1;
+	GenericObject objct2;
+
+	//objct1.GenericObject();
+	objct2.SetName("Hannah");
+	objct2.SetDescriptor("This is a great description.");
+	objct2.SetIntVar(521);
+
+	objct1.PrintObj();
+	objct2.PrintObj();
+	*/
 
 	while (menuSelection != 'q') {
 
@@ -63,14 +71,16 @@ int main()
 			while (menuSelection != 'q') {
 
 				if (menuSelection == 'f') {
-
-					cout << "eneter a filepath location:" << endl;
+					cout << "Enter a filepath location:" << endl;
 					cin >> filepath;
 					clientList.InputFile(filepath);
-
-
-
 				}
+				else if (menuSelection == 'l') {
+					clientList.PrintClients();
+				}
+
+				menuSelection = ClientMenu();
+
 
 			}
 
@@ -81,7 +91,6 @@ int main()
 
 	}
 	
-
    
 }
 

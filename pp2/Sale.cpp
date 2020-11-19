@@ -1,5 +1,10 @@
 #include "Sale.h"
+#include <iostream>
+#include <fstream>
 #include <string>
+#include <vector>
+#include <iomanip>
+#include <algorithm>
 using namespace std;
 
 

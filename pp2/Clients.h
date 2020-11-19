@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <iomanip>
+#include <algorithm>
 using namespace std;
 class Clients
 
@@ -17,6 +19,8 @@ public:
 	void AddNewClient();
 	void UpdateClientInfo(string clientName);
 private:
+	GenericObject currClient;
+	GenericObject IterateClients;
 	ifstream inputClientsFS;
 	ofstream outputClientsFS;
 	int GetNumLines(string filePath);

@@ -1,6 +1,19 @@
 #include "GenericObject.h"
+#include <iostream>
+#include <fstream>
 #include <string>
+#include <vector>
+#include <iomanip>
+#include <algorithm>
 using namespace std;
+
+GenericObject::GenericObject()
+{
+    ObjectName = "noName";
+    ObjectDescript = "noDescription";
+    objectIntVar = -1;
+
+}
 
 
 void GenericObject::SetName(string name)
@@ -38,4 +51,10 @@ string GenericObject::GetDescriptor()
 int GenericObject::GetIntVar()
 {
     return this->objectIntVar;
+}
+
+void GenericObject::PrintObj()
+{
+    cout << "Name: " << this->GetName() << " Description: " << this->GetDescriptor() << " Int Val: " << this->GetIntVar() << endl;
+    return;
 }

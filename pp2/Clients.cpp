@@ -20,28 +20,29 @@ void Clients::InputFile(string filePath) //Opens file, runs through and adds eac
     }
 
     numLines = GetNumLines(filePath); //get the number of lines to input
-    clientList.resize(vectorSize + numLines);
-
+    //clientList.resize(vectorSize + numLines);
 
     int i = 0;
     while (i < numLines) {
         
         inputClientsFS >> stringHolder; //retrieve client name from file
-        clientList.at(i).SetName(stringHolder); //set name into vector via client class
+        
+        
+        currClient.SetName(stringHolder); //set name into vector via client class
 
         inputClientsFS >> stringHolder; //retrieve client address string from file
-        clientList.at(i).SetDescriptor(stringHolder); //set address string into vector via client class
+        currClient.SetDescriptor(stringHolder); //set address string into vector via client class
 
         inputClientsFS >> intHolder; //retrieve client address string from file
         //TODO convert string to int?
-        clientList.at(i).SetIntVar(intHolder); //set address string into vector via client class
+        currClient.SetIntVar(intHolder); //set address string into vector via client class
+
+        clientList.push_back(currClient);
 
         ++i;
     }
 
     inputClientsFS.close(); // Done with file, so close it
-
-
 
 }
 
@@ -74,11 +75,11 @@ void Clients::OutputFile ()
     outputClientsFS << "Sales to date\t";
     outputClientsFS << endl;
 
-    for (int i = 0; i < numLines; ++i) {
+    for (GenericObject IterateClients : clientList) { //iterate through vector and add each client to the output file
 
-        outputClientsFS << clientList.at(i).GetName() << "\t";
-        outputClientsFS << clientList.at(i).GetDescriptor() << "\t";
-        outputClientsFS << clientList.at(i).GetIntVar() << "\t";
+        outputClientsFS << IterateClients.GetName() << "\t";
+        outputClientsFS << IterateClients.GetDescriptor() << "\t";
+        outputClientsFS << IterateClients.GetIntVar() << "\t";
         outputClientsFS << endl;
     }
 
@@ -86,18 +87,20 @@ void Clients::OutputFile ()
 
 void Clients::PrintClients()
 {
-    // TODO: Add your implementation code here.
+   for (GenericObject IterateClients : clientList) { 
+       
+       IterateClients.PrintObj(); //print entire vector of clients to console
+   }
+
 
 }
 void Clients::PrintSingleClient(string clientName)
 {
-    for (int i = 0; i < numLines; ++i) {
-        if (clientName == clientList.at(i).GetName()) {
-            cout << "Name: " << clientList.at(i).GetName() << " Address: " << clientList.at(i).GetDescriptor()
-                << "Sales to date: " << clientList.at(i).GetIntVar() << endl;
+    for (GenericObject IterateClients : clientList)
+        if (clientName == IterateClients.GetName()) {
+            cout << "Name: " << IterateClients.GetName() << " Address: " << IterateClients.GetDescriptor()
+                << "Sales to date: " << IterateClients.GetIntVar() << endl;
         }
-    }
-
 }
 void Clients::AddNewClient()
 {
