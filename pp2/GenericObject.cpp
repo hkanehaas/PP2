@@ -55,6 +55,6 @@ int GenericObject::GetIntVar()
 
 void GenericObject::PrintObj()
 {
-    cout << "Name: " << this->GetName() << " Description: " << this->GetDescriptor() << " Int Val: " << this->GetIntVar() << endl;
+    cout << this->GetName() << " --- " << this->GetDescriptor() << " --- " << this->GetIntVar() << endl;
     return;
 }

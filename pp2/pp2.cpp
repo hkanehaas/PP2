@@ -49,18 +49,8 @@ int main()
 
 	char menuSelection = TopMenu(); //get initial menu char
 	string filepath;
+	string stringHolder;
     Clients clientList; //Testing out the generic object class DELETE THIS SECTION
-/*		GenericObject objct1;
-	GenericObject objct2;
-
-	//objct1.GenericObject();
-	objct2.SetName("Hannah");
-	objct2.SetDescriptor("This is a great description.");
-	objct2.SetIntVar(521);
-
-	objct1.PrintObj();
-	objct2.PrintObj();
-	*/
 
 	while (menuSelection != 'q') {
 
@@ -78,13 +68,26 @@ int main()
 				else if (menuSelection == 'l') {
 					clientList.PrintClients();
 				}
+				else if (menuSelection == 's') {
+					clientList.OutputFile();
+				}
+				else if (menuSelection == 'a') {
+					clientList.AddNewClient();
+				}
+				else if (menuSelection == 'u') {
+					cin.ignore();
+					cout << "Enter the name of the client you want to update:" << endl;
+					getline(cin, stringHolder);
+					clientList.UpdateClientInfo(stringHolder);
+					
+				}
 
 				menuSelection = ClientMenu();
 
 
 			}
 
-
+			
 
 
 		}

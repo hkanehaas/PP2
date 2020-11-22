@@ -2,6 +2,7 @@
 #include "Clients.h"
 #include <iostream>
 #include <fstream>
+#include <sstream> 
 #include <string>
 #include <vector>
 #include <iomanip>
@@ -23,23 +24,29 @@ void Clients::InputFile(string filePath) //Opens file, runs through and adds eac
     //clientList.resize(vectorSize + numLines);
 
     int i = 0;
+    int tabLocation;
+    string subStringHolder;
     while (i < numLines) {
         
-        inputClientsFS >> stringHolder; //retrieve client name from file
-        
-        
-        currClient.SetName(stringHolder); //set name into vector via client class
+        getline(inputClientsFS, stringHolder); //get entire line and parse manually below due to spaces in client names and address
 
-        inputClientsFS >> stringHolder; //retrieve client address string from file
-        currClient.SetDescriptor(stringHolder); //set address string into vector via client class
+        tabLocation = stringHolder.find('\t');
+        subStringHolder = stringHolder.substr(0, tabLocation);
+        currClient.SetName(subStringHolder);
+        stringHolder.replace(0, tabLocation + 1, "");
 
-        inputClientsFS >> intHolder; //retrieve client address string from file
-        //TODO convert string to int?
-        currClient.SetIntVar(intHolder); //set address string into vector via client class
+        tabLocation = stringHolder.find('\t');
+        subStringHolder = stringHolder.substr(0, tabLocation);
+        currClient.SetDescriptor(subStringHolder);
+        stringHolder.replace(0, tabLocation + 1, "");
 
+        stringstream intInput(stringHolder);
+
+        intInput >> intHolder;
+        currClient.SetIntVar(intHolder);
         clientList.push_back(currClient);
-
         ++i;
+
     }
 
     inputClientsFS.close(); // Done with file, so close it
@@ -66,21 +73,26 @@ void Clients::OutputFile ()
 
     // Write to output grade report file
 
-    outputClientsFS << "CLIENT MASTER LIST\t";
-    //TODO: make this cenetered at the top
-    //TODO: make sparating line *******
+    outputClientsFS << setw(50) << "CLIENT MASTER LIST\t" << endl;
+    outputClientsFS << setfill('*') << setw(75) << "" << endl;
+    outputClientsFS << setfill(' ');
 
-    outputClientsFS << "Name\t";
-    outputClientsFS << "Address\t";
-    outputClientsFS << "Sales to date\t";
-    outputClientsFS << endl;
+
+    outputClientsFS << setw(12) << "Name\t";
+    outputClientsFS << setw(20) << "Address\t";
+    outputClientsFS << setw(17) << "Sales to date\t";
+    outputClientsFS << setw(10) << endl;
 
     for (GenericObject IterateClients : clientList) { //iterate through vector and add each client to the output file
 
-        outputClientsFS << IterateClients.GetName() << "\t";
-        outputClientsFS << IterateClients.GetDescriptor() << "\t";
-        outputClientsFS << IterateClients.GetIntVar() << "\t";
+        outputClientsFS << setw(20) << left << IterateClients.GetName() << "\t";
+        outputClientsFS << setw(20) << left << IterateClients.GetDescriptor() << "\t";
+        outputClientsFS << left << "$" << IterateClients.GetIntVar() << "\t";
         outputClientsFS << endl;
+        outputClientsFS << setfill('-') << setw(75) << "" << endl;
+        outputClientsFS << setfill(' ') << right;
+        outputClientsFS << endl;
+
     }
 
 }
@@ -90,6 +102,7 @@ void Clients::PrintClients()
    for (GenericObject IterateClients : clientList) { 
        
        IterateClients.PrintObj(); //print entire vector of clients to console
+       cout << endl;
    }
 
 
@@ -106,21 +119,27 @@ void Clients::AddNewClient()
 {
     string name;
     string address;
-    int salesToDate;    
-    int vectorSize = clientList.size() - 1;
+    int salesToDate; 
 
     cout << "Client name?" << endl;
-    inputClientsFS >> name; //retrieve client name from user
+    cin.ignore(); // clear cin buffer
+    getline(cin, name); //retrieve client name from user
 
-    inputClientsFS >> address; //retrieve client name from user
+    cout << "Client Address?" << endl;
+    getline(cin, address); //retrieve client name from user
 
-    inputClientsFS >> salesToDate; //retrieve client name from user
-    clientList.resize(vectorSize + 1);
-    vectorSize = clientList.size() - 1;
-    clientList.at(vectorSize).SetName(name); //set name into vector via client class
-    clientList.at(vectorSize).SetDescriptor(address); //set name into vector via client class
-    clientList.at(vectorSize).SetIntVar(salesToDate); //set name into vector via client class
-    cout << "New client: " << clientList.at(vectorSize).GetName() << " has been added." << endl;
+    cout << "Sales to date?" << endl;
+    cin >> salesToDate; //retrieve client name from user
+
+    currClient.SetName(name); //set name into vector via client class
+    currClient.SetDescriptor(address); //set address into client class holder
+    currClient.SetIntVar(salesToDate); //set sales into vector via client class
+
+    clientList.push_back(currClient);
+    //currClient = clientList.back();
+
+    cout << "New client: " << currClient.GetName() << " has been added." << endl;
+
 
     return;
 
@@ -132,20 +151,45 @@ void Clients::UpdateClientInfo(string clientName)
     string stringHolder;
     int intHolder;
 
+    for (GenericObject &IterateClients : clientList) { //iterate through vector and add each client to the output file
 
-
+        if (IterateClients.GetName() == clientName) {
+            cin.ignore();
             cout << "Enter column to update: (n for name, a for address, s for sales to date, q for quit" << endl;
-        cin >> charHolder;
+            cin >> charHolder;
 
-        while (charHolder != 'q') {
+            while (charHolder != 'q') {
 
-            if (charHolder == 'n') {
-                cout << "Enter update name:" << endl;
-                cin >> stringHolder;
+                cin.ignore();
+
+
+                if (charHolder == 'n') {
+                    cout << "Enter NEW client name:" << endl;
+                   getline(cin, stringHolder);
+                    IterateClients.SetName(stringHolder);
+                    break;
+                }
+                else if (charHolder == 'a') {
+                    cout << "Enter NEW client Sales to date number:" << endl;
+                    getline(cin, stringHolder);
+                    IterateClients.SetDescriptor(stringHolder);
+                    break;
+                }
+                else if (charHolder == 'a') {
+                    cout << "Enter NEW client address:" << endl;
+                    cin >> intHolder;
+                    IterateClients.SetIntVar(intHolder);
+                    break;
+                }
 
             }
+            break;
 
         }
+        else { cout << "Client not found. Please check the name and try again." << endl; }
+
+
+    }
 
 }
 

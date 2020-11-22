@@ -10,16 +10,17 @@ using namespace std;
 
 int SalesRep::CalculateBonus()
 {
-    int saleAmount;
+    int saleAmount = this->GetIntVar();
     float bonus;
     while (saleAmount != -1) {
-        if (saleAmount >=20) {
-            bonus = saleAmount*10/100;
+        if (saleAmount >= 20) {
+            bonus = saleAmount * 10 / 100;
         }
-        else if (saleAmount <20) {
-            bonus = saleAmount*5/100;
+        else if (saleAmount < 20) {
+            bonus = saleAmount * 5 / 100;
         }
-        cout << "Sales bonus: "<<endl;
+        cout << "Sales bonus: " << endl;
+    }
   
     return 0;
 }
