@@ -107,14 +107,6 @@ void Clients::PrintClients()
 
 
 }
-void Clients::PrintSingleClient(string clientName)
-{
-    for (GenericObject IterateClients : clientList)
-        if (clientName == IterateClients.GetName()) {
-            cout << "Name: " << IterateClients.GetName() << " Address: " << IterateClients.GetDescriptor()
-                << "Sales to date: " << IterateClients.GetIntVar() << endl;
-        }
-}
 void Clients::AddNewClient()
 {
     string name;
@@ -151,45 +143,59 @@ void Clients::UpdateClientInfo(string clientName)
     string stringHolder;
     int intHolder;
 
-    for (GenericObject &IterateClients : clientList) { //iterate through vector and add each client to the output file
+    cout << "Searching for: " << clientName << endl;
+
+    for (GenericObject &IterateClients : clientList) { //iterate through vector and add each client to the output file 
 
         if (IterateClients.GetName() == clientName) {
-            cin.ignore();
+           
             cout << "Enter column to update: (n for name, a for address, s for sales to date, q for quit" << endl;
             cin >> charHolder;
 
-            while (charHolder != 'q') {
-
-                cin.ignore();
-
-
-                if (charHolder == 'n') {
-                    cout << "Enter NEW client name:" << endl;
-                   getline(cin, stringHolder);
-                    IterateClients.SetName(stringHolder);
-                    break;
-                }
-                else if (charHolder == 'a') {
-                    cout << "Enter NEW client Sales to date number:" << endl;
-                    getline(cin, stringHolder);
-                    IterateClients.SetDescriptor(stringHolder);
-                    break;
-                }
-                else if (charHolder == 'a') {
-                    cout << "Enter NEW client address:" << endl;
-                    cin >> intHolder;
-                    IterateClients.SetIntVar(intHolder);
-                    break;
-                }
-
+            if (charHolder == 'q') {
+                break;
             }
-            break;
+
+            else if (charHolder == 'n') {
+                cin.ignore();
+                cout << "Enter NEW client name:" << endl;
+                getline(cin, stringHolder);
+                IterateClients.SetName(stringHolder);
+                break;
+            }
+            else if (charHolder == 'a') {
+                cin.ignore();
+                cout << "Enter NEW client address:" << endl;
+                getline(cin, stringHolder);
+                IterateClients.SetDescriptor(stringHolder);
+                break;
+            }
+            else if (charHolder == 's') {
+                cin.ignore();
+                cout << "Enter NEW client sales to date number:" << endl;
+                cin >> intHolder;
+                IterateClients.SetIntVar(intHolder);
+                break;
+            }
 
         }
-        else { cout << "Client not found. Please check the name and try again." << endl; }
-
-
     }
 
-}
+   cout << "Client not found. Please check the name and try again." << endl;
 
+    return;
+
+}
+void Clients::PrintSingleClient(string clientName)
+{
+    for (GenericObject IterateClients : clientList)
+        if (clientName == IterateClients.GetName()) {
+            cout << "Name: " << IterateClients.GetName() << endl;
+            cout << "Address: " << IterateClients.GetDescriptor() << endl;
+            cout << "Sales to date: $" << IterateClients.GetIntVar() << endl << endl;
+            return;
+            break;
+        }
+    cout << "Client not found. Please check the name and try again." << endl;
+    return;
+}

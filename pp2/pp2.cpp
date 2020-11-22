@@ -32,10 +32,11 @@ char ClientMenu() {
 	cout << "CLIENT MENU" << endl;
 	cout << "f - Input a File" << endl;
 	cout << "l - List Current Clients" << endl;
+	cout << "o - List One Client" << endl;
 	cout << "a - Add a new client" << endl;
 	cout << "u - Update an existing client" << endl;
-	cout << "b - Back to Main Menu" << endl;
 	cout << "s - Save client report" << endl;
+	cout << "b - Back to Main Menu" << endl;
 	cout << "q - quit" << endl;
 	cin >> clientSelection;
 
@@ -50,7 +51,8 @@ int main()
 	char menuSelection = TopMenu(); //get initial menu char
 	string filepath;
 	string stringHolder;
-    Clients clientList; //Testing out the generic object class DELETE THIS SECTION
+    Clients clientList;
+	string inputClientName;
 
 	while (menuSelection != 'q') {
 
@@ -76,22 +78,33 @@ int main()
 				}
 				else if (menuSelection == 'u') {
 					cin.ignore();
-					cout << "Enter the name of the client you want to update:" << endl;
-					getline(cin, stringHolder);
-					clientList.UpdateClientInfo(stringHolder);
+					cout << "Enter client name:" << endl;
+					getline(cin, inputClientName);
 					
+					cout << "Entered: " << inputClientName << endl;
+					
+					clientList.UpdateClientInfo(inputClientName);
+				}
+				else if (menuSelection == 'o') {
+					cin.ignore();
+					cout << "Enter client name:" << endl;
+					getline(cin, inputClientName);
+
+					cout << "Entered: " << inputClientName << endl;
+
+					clientList.PrintSingleClient(inputClientName);
+				}
+				else if (menuSelection == 'b') {
+					break;
 				}
 
 				menuSelection = ClientMenu();
-
-
 			}
-
-			
-
 
 		}
 
+		menuSelection = TopMenu();
+	
 	}
 	
    
