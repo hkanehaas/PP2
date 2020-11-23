@@ -7,42 +7,38 @@
 #include <algorithm>
 using namespace std;
 
-
-int Sale::SetMonth(string month)
+void Sale::SetMonth(string month)
 {
-    // TODO: Add your implementation code here.
-    return 0;
+    Month = month;
+    return;
 }
 
 
-int Sale::SetProductPointer(string productID)
+void Sale::SetProductPointer(string productID)
 {
-    // TODO: Add your implementation code here.
-    return 0;
+    ProductID = productID;
+    return ;
 }
 
 
-int Sale::SetClientPointer(string clientID)
+void Sale::SetClientPointer(string clientID)
 {
-    // TODO: Add your implementation code here.
-    return 0;
+    ClientID = clientID;
+    return;
 }
 
 
-int Sale::GetMonth()
+string Sale::GetMonth()
 {
-    // TODO: Add your implementation code here.
-    return 0;
+    return this->Month;
 }
 
-int Sale::GetClientPointer()
+string Sale::GetClientPointer()
 {
-    // TODO: Add your implementation code here.
-    return 0;
+    return this->ClientID;
 }
 
-int Sale::GetProductPointer()
+string Sale::GetProductPointer()
 {
-    // TODO: Add your implementation code here.
-    return 0;
+    return this->ProductID;
 }
