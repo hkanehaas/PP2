@@ -33,6 +33,12 @@
     <ClCompile Include="SalesReps.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Products.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Product.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GenericObject.h">
@@ -48,6 +54,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SalesReps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Products.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Product.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

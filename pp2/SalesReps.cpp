@@ -11,8 +11,6 @@
 
 void SalesReps::InputFile(string filePath)
 {
-
-    int vectorSize = salesRepList.size() - 1;
     string stringHolder; //holds for input string
     int intHolder; //holds input ints
     inputFS.open(filePath); //attempts to open file
@@ -22,7 +20,6 @@ void SalesReps::InputFile(string filePath)
     }
 
     numLines = GetNumLines(filePath); //get the number of lines to input
-    //salesRepList.resize(vectorSize + numLines);
 
     int i = 0;
     int tabLocation;
@@ -87,6 +84,8 @@ void SalesReps::OutputFile()
         outputFS << endl;
 
     }
+
+    outputFS.close(); // Done with file, so close it
 }
 
 

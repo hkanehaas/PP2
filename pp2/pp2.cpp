@@ -8,7 +8,7 @@
 using namespace std;
 #include "Clients.h"
 #include "SalesReps.h"
-//#include "Products.h"
+#include "Products.h"
 //#include "Sales.h"
 #include "GenericObject.h"
 
@@ -110,6 +110,7 @@ int main()
 	string stringHolder;
 	Clients clientList;
 	SalesReps salesRepsList;
+	Products productsList;
 	string updateObjectName;
 
 	while (menuSelection != 'q') {
@@ -212,44 +213,38 @@ int main()
 			while (subMenuSelection != 'q') {
 
 				if (subMenuSelection == 'f') {
-					/*	cout << "Enter a filepath location:" << endl;
+						cout << "Enter a filepath location:" << endl;
 						cin >> filepath;
-						clientList.InputFile(filepath); */
-
-					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
+						productsList.InputFile(filepath);
 
 				}
 				else if (subMenuSelection == 'l') {
-					//clientList.PrintClients();
-					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
+					productsList.PrintProducts();
 				}
 				else if (subMenuSelection == 's') {
-					//clientList.OutputFile();
-					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
+					productsList.OutputFile();
 				}
 				else if (subMenuSelection == 'a') {
-					//clientList.AddNewClient();
+					productsList.AddNewProduct();
 				}
 				else if (subMenuSelection == 'u') {
-					/*cin.ignore();
-					cout << "Enter client name:" << endl;
-					getline(cin, inputClientName);
+					cin.ignore();
+					cout << "Enter product name:" << endl;
+					getline(cin, updateObjectName);
 
-					cout << "Entered: " << inputClientName << endl;
+					cout << "Entered: " << updateObjectName << endl;
 
-					clientList.UpdateClientInfo(inputClientName); */
-					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
+					productsList.UpdateProductInfo(updateObjectName);
 				}
 				else if (subMenuSelection == 'o') {
-					/*
+					
 					cin.ignore();
-					cout << "Enter client name:" << endl;
-					getline(cin, inputClientName);
+					cout << "Enter product name:" << endl;
+					getline(cin, updateObjectName);
 
-					cout << "Entered: " << inputClientName << endl;
+					cout << "Entered: " << updateObjectName << endl;
 
-					clientList.PrintSingleClient(inputClientName); */
-					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
+					productsList.PrintSingleProduct(updateObjectName);
 				}
 				else if (subMenuSelection == 'b') {
 					break;

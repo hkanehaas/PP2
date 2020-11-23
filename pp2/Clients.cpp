@@ -11,7 +11,6 @@ using namespace std;
 
 void Clients::InputFile(string filePath) //Opens file, runs through and adds each line to the clients vector, closes file
 {
-    int vectorSize = clientList.size() - 1;
     string stringHolder; //holds for input string
     int intHolder; //holds input ints
     inputFS.open(filePath); //attempts to open file
@@ -21,7 +20,6 @@ void Clients::InputFile(string filePath) //Opens file, runs through and adds eac
     }
 
     numLines = GetNumLines(filePath); //get the number of lines to input
-    //clientList.resize(vectorSize + numLines);
 
     int i = 0;
     int tabLocation;
@@ -95,6 +93,7 @@ void Clients::OutputFile ()
 
     }
 
+    outputFS.close(); // Done with file, so close it
 }
 
 void Clients::PrintClients()

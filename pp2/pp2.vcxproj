@@ -142,6 +142,8 @@
     <ClCompile Include="Clients.cpp" />
     <ClCompile Include="GenericObject.cpp" />
     <ClCompile Include="pp2.cpp" />
+    <ClCompile Include="Product.cpp" />
+    <ClCompile Include="Products.cpp" />
     <ClCompile Include="Sale.cpp" />
     <ClCompile Include="SalesRep.cpp" />
     <ClCompile Include="SalesReps.cpp" />
@@ -149,6 +151,8 @@
   <ItemGroup>
     <ClInclude Include="Clients.h" />
     <ClInclude Include="GenericObject.h" />
+    <ClInclude Include="Product.h" />
+    <ClInclude Include="Products.h" />
     <ClInclude Include="Sale.h" />
     <ClInclude Include="SalesRep.h" />
     <ClInclude Include="SalesReps.h" />
