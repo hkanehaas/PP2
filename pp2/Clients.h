@@ -21,8 +21,8 @@ public:
 private:
 	GenericObject currClient;
 	GenericObject IterateClients;
-	ifstream inputClientsFS;
-	ofstream outputClientsFS;
+	ifstream inputFS;
+	ofstream outputFS;
 	int GetNumLines(string filePath);
 	int numLines;
 };

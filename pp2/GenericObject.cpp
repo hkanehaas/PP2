@@ -12,13 +12,22 @@ GenericObject::GenericObject()
     ObjectName = "noName";
     ObjectDescript = "noDescription";
     objectIntVar = -1;
-
+    ObjectID = nextId; //Unique IDs - from section 11.18 in zybooks
+    ++nextId; //Unique IDs - from section 11.18 in zybooks
 }
 
+int GenericObject::getNextId() { //Unique IDs - from section 11.18 in zybooks
+    return nextId;
+}
+
+int GenericObject::nextId = 101; //Unique IDs - from section 11.18 in zybooks
 
 void GenericObject::SetName(string name)
 {
     ObjectName = name;
+    ObjectID = nextId; //Unique IDs - from section 11.18 in zybooks
+    ++nextId; //Unique IDs - from section 11.18 in zybooks
+
     return;
 }
 
@@ -55,6 +64,6 @@ int GenericObject::GetIntVar()
 
 void GenericObject::PrintObj()
 {
-    cout << this->GetName() << " --- " << this->GetDescriptor() << " --- " << this->GetIntVar() << endl;
+    cout << "ID: " << this->ObjectID << " " << this->GetName() << " - " << this->GetDescriptor() << " - " << this->GetIntVar() << endl;
     return;
 }

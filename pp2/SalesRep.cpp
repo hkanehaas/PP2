@@ -2,32 +2,24 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <vector>
-#include <iomanip>
-#include <algorithm>
 using namespace std;
-
 
 int SalesRep::CalculateBonus()
 {
     int saleAmount = this->GetIntVar();
-    float bonus;
-    while (saleAmount != -1) {
-        if (saleAmount >= 20) {
+        if (saleAmount >= 2000) {
             bonus = saleAmount * 10 / 100;
         }
-        else if (saleAmount < 20) {
+        else if (saleAmount < 2000) {
             bonus = saleAmount * 5 / 100;
         }
-        cout << "Sales bonus: " << endl;
-    }
-  
-    return 0;
+
+    return bonus;
 }
 
+void SalesRep::PrintObj() {
 
-int SalesRep::GetBonus()
-{
-  
-    return 0;
+    GenericObject::PrintObj();
+    cout << "Yearly Bonus: $" << this->CalculateBonus() << endl;
 }
+

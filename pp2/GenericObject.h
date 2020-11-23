@@ -18,10 +18,13 @@ public:
 	string GetDescriptor();
 	int GetIntVar();
 	void PrintObj();
+	static int getNextId(); //Unique IDs - from section 11.18 in zybooks;
+	int ObjectID;
+
 private:
-	
 	string ObjectName;
 	string ObjectDescript;
 	int objectIntVar;
+	static int nextId;  //Unique IDs - from section 11.18 in zybooks;
 };
 

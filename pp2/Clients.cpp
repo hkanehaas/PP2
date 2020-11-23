@@ -14,8 +14,8 @@ void Clients::InputFile(string filePath) //Opens file, runs through and adds eac
     int vectorSize = clientList.size() - 1;
     string stringHolder; //holds for input string
     int intHolder; //holds input ints
-    inputClientsFS.open(filePath); //attempts to open file
-    if (!inputClientsFS.is_open()) { //check if file path is valid and no issue opening
+    inputFS.open(filePath); //attempts to open file
+    if (!inputFS.is_open()) { //check if file path is valid and no issue opening
         cout << "Could not open file. Check file path and try again." << filePath << endl;
         //return 1; // 1 indicates error
     }
@@ -28,7 +28,7 @@ void Clients::InputFile(string filePath) //Opens file, runs through and adds eac
     string subStringHolder;
     while (i < numLines) {
         
-        getline(inputClientsFS, stringHolder); //get entire line and parse manually below due to spaces in client names and address
+        getline(inputFS, stringHolder); //get entire line and parse manually below due to spaces in client names and address
 
         tabLocation = stringHolder.find('\t');
         subStringHolder = stringHolder.substr(0, tabLocation);
@@ -49,7 +49,7 @@ void Clients::InputFile(string filePath) //Opens file, runs through and adds eac
 
     }
 
-    inputClientsFS.close(); // Done with file, so close it
+    inputFS.close(); // Done with file, so close it
 
 }
 
@@ -64,34 +64,34 @@ int Clients::GetNumLines(string filename) { //CREDIT This function is from Stack
 
 void Clients::OutputFile ()
 {
-    outputClientsFS.open("ClientReport.txt"); //create file for output
+    outputFS.open("ClientReport.txt"); //create file for output
 
-    if (!outputClientsFS.is_open()) { //if file fails to generate
+    if (!outputFS.is_open()) { //if file fails to generate
         cout << "Could not generate ClientReport.txt file." << endl;
         //return 1;
     }
 
     // Write to output grade report file
 
-    outputClientsFS << setw(50) << "CLIENT MASTER LIST\t" << endl;
-    outputClientsFS << setfill('*') << setw(75) << "" << endl;
-    outputClientsFS << setfill(' ');
+    outputFS << setw(50) << "CLIENT MASTER LIST\t" << endl;
+    outputFS << setfill('*') << setw(75) << "" << endl;
+    outputFS << setfill(' ');
 
 
-    outputClientsFS << setw(12) << "Name\t";
-    outputClientsFS << setw(20) << "Address\t";
-    outputClientsFS << setw(17) << "Sales to date\t";
-    outputClientsFS << setw(10) << endl;
+    outputFS << setw(12) << "Name\t";
+    outputFS << setw(20) << "Address\t";
+    outputFS << setw(17) << "Sales to date\t";
+    outputFS << setw(10) << endl;
 
     for (GenericObject IterateClients : clientList) { //iterate through vector and add each client to the output file
 
-        outputClientsFS << setw(20) << left << IterateClients.GetName() << "\t";
-        outputClientsFS << setw(20) << left << IterateClients.GetDescriptor() << "\t";
-        outputClientsFS << left << "$" << IterateClients.GetIntVar() << "\t";
-        outputClientsFS << endl;
-        outputClientsFS << setfill('-') << setw(75) << "" << endl;
-        outputClientsFS << setfill(' ') << right;
-        outputClientsFS << endl;
+        outputFS << setw(20) << left << IterateClients.GetName() << "\t";
+        outputFS << setw(20) << left << IterateClients.GetDescriptor() << "\t";
+        outputFS << left << "$" << IterateClients.GetIntVar() << "\t";
+        outputFS << endl;
+        outputFS << setfill('-') << setw(75) << "" << endl;
+        outputFS << setfill(' ') << right;
+        outputFS << endl;
 
     }
 
@@ -118,17 +118,16 @@ void Clients::AddNewClient()
     getline(cin, name); //retrieve client name from user
 
     cout << "Client Address?" << endl;
-    getline(cin, address); //retrieve client name from user
+    getline(cin, address); //retrieve client address from user
 
     cout << "Sales to date?" << endl;
-    cin >> salesToDate; //retrieve client name from user
+    cin >> salesToDate; //retrieve client sales from user
 
     currClient.SetName(name); //set name into vector via client class
     currClient.SetDescriptor(address); //set address into client class holder
     currClient.SetIntVar(salesToDate); //set sales into vector via client class
 
     clientList.push_back(currClient);
-    //currClient = clientList.back();
 
     cout << "New client: " << currClient.GetName() << " has been added." << endl;
 
