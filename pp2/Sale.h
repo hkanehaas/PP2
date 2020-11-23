@@ -18,5 +18,9 @@ public:
     int GetMonth();
     int GetProductPointer();
     int GetClientPointer();
+private:
+    string ClientID;
+    string Month;
+    string ProductID;
 };
 
