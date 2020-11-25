@@ -12,15 +12,15 @@ class Sale :
     public GenericObject
 {
 public:
-    int SetMonth(string month);
-    int SetProductPointer(string productID);
-    int SetClientPointer(string clientID);
+    void SetMonth(int month);
+    void SetProductPointer(int productID);
+    void SetClientPointer(int clientID);
     int GetMonth();
     int GetProductPointer();
     int GetClientPointer();
 private:
-    string ClientID;
-    string Month;
-    string ProductID;
+    int ClientID;
+    int Month;
+    int ProductID;
 };
 
