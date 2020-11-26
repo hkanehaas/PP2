@@ -9,7 +9,7 @@ using namespace std;
 #include "Clients.h"
 #include "SalesReps.h"
 #include "Products.h"
-//#include "Sales.h"
+#include "Sales.h"
 #include "GenericObject.h"
 
 char TopMenu() {
@@ -111,6 +111,7 @@ int main()
 	Clients clientList;
 	SalesReps salesRepsList;
 	Products productsList;
+	sales salesList;
 	string updateObjectName;
 
 	while (menuSelection != 'q') {
@@ -261,23 +262,22 @@ int main()
 			while (subMenuSelection != 'q') {
 
 				if (subMenuSelection == 'f') {
-					/*	cout << "Enter a filepath location:" << endl;
-						cin >> filepath;
-						clientList.InputFile(filepath); */
-
-					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
+					cout << "Enter a filepath location:" << endl;
+					cin >> filepath;
+					salesList.InputFile(filepath, clientList, productsList);
 
 				}
 				else if (subMenuSelection == 'l') {
-					//clientList.PrintClients();
+					//salesList.PrintClients();
 					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
 				}
 				else if (subMenuSelection == 's') {
-					//clientList.OutputFile();
+					//salesList.OutputFile();
 					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
 				}
 				else if (subMenuSelection == 'a') {
-					//clientList.AddNewClient();
+					//salesList.AddNewPurchase();
+					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
 				}
 				else if (subMenuSelection == 'u') {
 					/*cin.ignore();
@@ -286,7 +286,7 @@ int main()
 
 					cout << "Entered: " << inputClientName << endl;
 
-					clientList.UpdateClientInfo(inputClientName); */
+					salesList.UpdateClientInfo(inputClientName); */
 					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
 				}
 				else if (subMenuSelection == 'o') {
@@ -297,7 +297,7 @@ int main()
 
 					cout << "Entered: " << inputClientName << endl;
 
-					clientList.PrintSingleClient(inputClientName); */
+					salesList.PrintSingleClient(inputClientName); */
 					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
 				}
 				else if (subMenuSelection == 'b') {
