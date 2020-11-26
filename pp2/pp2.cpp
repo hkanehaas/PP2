@@ -1,6 +1,6 @@
 //main function where menu selection and class testing should be set up
-#include <iostream>
-#include <fstream>
+//#include <iostream>
+//#include <fstream>
 #include <string>
 #include <vector>
 #include <iomanip>
@@ -11,6 +11,7 @@ using namespace std;
 #include "Products.h"
 #include "Sales.h"
 #include "GenericObject.h"
+
 
 char TopMenu() {
 
@@ -113,6 +114,7 @@ int main()
 	Products productsList;
 	sales salesList;
 	string updateObjectName;
+	int miscIDHolder;
 
 	while (menuSelection != 'q') {
 
@@ -268,37 +270,30 @@ int main()
 
 				}
 				else if (subMenuSelection == 'l') {
-					//salesList.PrintClients();
-					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
+					salesList.PrintSales();
 				}
 				else if (subMenuSelection == 's') {
-					//salesList.OutputFile();
-					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
+					salesList.OutputFile();
 				}
 				else if (subMenuSelection == 'a') {
-					//salesList.AddNewPurchase();
-					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
+					salesList.AddNewPurchase();
 				}
 				else if (subMenuSelection == 'u') {
-					/*cin.ignore();
-					cout << "Enter client name:" << endl;
-					getline(cin, inputClientName);
+					cin.ignore();
+					cout << "Enter Sale ID:" << endl;
+					cin >> miscIDHolder;
+					cout << "Entered ID: " << miscIDHolder << endl;
 
-					cout << "Entered: " << inputClientName << endl;
-
-					salesList.UpdateClientInfo(inputClientName); */
-					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
+					salesList.UpdateSale(miscIDHolder);
 				}
 				else if (subMenuSelection == 'o') {
-					/*
 					cin.ignore();
 					cout << "Enter client name:" << endl;
-					getline(cin, inputClientName);
+					getline(cin, updateObjectName);
 
-					cout << "Entered: " << inputClientName << endl;
+					cout << "Entered: " << updateObjectName << endl;
 
-					salesList.PrintSingleClient(inputClientName); */
-					cout << "TODO: MENU OPTION NOT AVAILABLE." << endl;
+					salesList.PrintSpecificClientSales(updateObjectName);
 				}
 				else if (subMenuSelection == 'b') {
 					break;

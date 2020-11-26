@@ -20,6 +20,11 @@ int GenericObject::getNextId() { //Unique IDs - from section 11.18 in zybooks
     return nextId;
 }
 
+int GenericObject::GetID() {
+
+    return this->ObjectID;
+}
+
 int GenericObject::nextId = 101; //Unique IDs - from section 11.18 in zybooks
 
 void GenericObject::SetName(string name)

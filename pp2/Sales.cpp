@@ -70,11 +70,11 @@ void sales::InputFile(string filePath, Clients& clientList, Products& productLis
         saleList.push_back(currSale);
 
 
-        //below is adding purchase details to clients and products vectors
-        for (Product IterateProducts : productList.productList) {  //print entire vector of clients to console
+        //The following two for loops edit the client and product values based on the purchases input
+
+        for (Product &IterateProducts : productList.productList) { 
 
             if (productName == IterateProducts.GetName()) {
-
                 price = IterateProducts.GetIntVar();
                 totlaUnitsSold = IterateProducts.GetCurrentSales() + unitsSold;
                 IterateProducts.SetCurrentSales(totlaUnitsSold);
@@ -82,14 +82,15 @@ void sales::InputFile(string filePath, Clients& clientList, Products& productLis
             }
 
         }
+        
+        for (GenericObject &IterateClients : clientList.clientList) {
 
-
-        for (GenericObject IterateClients : clientList.clientList)
             if (clientName == IterateClients.GetName()) {
                 totalSoldToClient = IterateClients.GetIntVar() + (price * unitsSold);
                 IterateClients.SetIntVar(totalSoldToClient);
                 break;
             }
+        }
 
 
         ++i;
@@ -102,31 +103,147 @@ void sales::InputFile(string filePath, Clients& clientList, Products& productLis
 
 void sales::OutputFile()
 {
-    // TODO: Add your implementation code here.
+    int sumProductsSold = 0;
+    int DollarValProductSold;
+
+    outputFS.open("MonthlySalesReport.txt"); //create file for output
+
+    if (!outputFS.is_open()) { //if file fails to generate
+        cout << "Could not generate MonthlySalesReport.txt file." << endl;
+        //return 1;
+    }
+
+    // Write to output grade report file
+
+    outputFS << setw(50) << "MONTHLY SALES REPORT\t" << endl;
+    outputFS << setfill('*') << setw(100) << "" << endl;
+    outputFS << setfill(' ');
+
+    outputFS << setw(5) << "Month\t";
+    outputFS << setw(15) << "Product Name\t";
+    outputFS << setw(17) << "Products sold\t";
+    outputFS << setw(10) << endl;
+
+    for (Sale IterateSales : saleList) { //iterate through vector and add each client to the output file
+
+        outputFS << setw(5) << left << IterateSales.GetMonth() << "\t";
+        outputFS << setw(20) << left << IterateSales.GetName() << "\t";
+        outputFS << IterateSales.GetIntVar() << "\t";
+        outputFS << endl;
+        outputFS << setfill('-') << setw(100) << "" << endl;
+        outputFS << setfill(' ') << right;
+        outputFS << endl;
+
+    }
+
+    //outputFS << "Total Monthly Sales: $" << sumProductsSold << endl;
+
+    outputFS.close(); // Done with file, so close it
 }
 
 
 void sales::PrintSales()
 {
-    // TODO: Add your implementation code here.
+    for (Sale IterateSale : saleList)
+        IterateSale.PrintObj();
 }
 
 
 void sales::PrintSpecificClientSales(string clientName)
 {
-    // TODO: Add your implementation code here.
+    for (Sale IterateSale : saleList) {
+
+        if (clientName == IterateClients.GetName()) {
+            IterateClients.PrintObj();
+        }
+    }
+
 }
 
 
 void sales::AddNewPurchase()
 {
-    // TODO: Add your implementation code here.
+    string productName;
+    string clientName;
+    int unitsSold;
+    int monthSold;
+
+    cout << "Product name?" << endl;
+    cin.ignore(); // clear cin buffer
+    getline(cin, productName); //retrieve Product name from user
+
+    cout << "Client Name?" << endl;
+    getline(cin, clientName); //retrieve Product address from user
+
+    cout << "Units Sold?" << endl;
+    cin >> unitsSold; //retrieve Product price from user
+
+    cout << "Month Sold?" << endl;
+    cin >> monthSold; //retrieve Product sales from user
+
+    currSale.SetName(productName); //set name into vector via Product class
+    currSale.SetDescriptor(clientName); //set address into Product class holder
+    currSale.SetIntVar(unitsSold); //set sales into vector via Product class
+    currSale.SetMonth(monthSold); //set sales into vector Product rep class
+
+    saleList.push_back(currSale);
+
+    cout << "New Sale of item: " << currSale.GetName() << " has been added." << endl;
 }
 
 
-void sales::UpdateSale(string purchaseID)
+void sales::UpdateSale(int purchaseID)
 {
-    // TODO: Add your implementation code here.
+    char charHolder;
+    string stringHolder;
+    int intHolder;
+
+    cout << "Searching for: " << purchaseID << endl;
+
+    for (Sale& IterateSale : saleList) { //iterate through vector and search for product to update
+
+        if (IterateSale.GetID() == purchaseID) {
+
+            cout << "Enter column to update: (p for product name, c for client name, u for units sold, m for month purchased, q for quit" << endl;
+            cin >> charHolder;
+
+            if (charHolder == 'q') {
+                break;
+            }
+
+            else if (charHolder == 'p') {
+                cin.ignore();
+                cout << "Enter NEW product name:" << endl;
+                getline(cin, stringHolder);
+                IterateSale.SetName(stringHolder);
+                break;
+            }
+            else if (charHolder == 'c') {
+                cin.ignore();
+                cout << "Enter NEW client name:" << endl;
+                getline(cin, stringHolder);
+                IterateSale.SetDescriptor(stringHolder);
+                break;
+            }
+            else if (charHolder == 'u') {
+                cin.ignore();
+                cout << "Enter NEW units sold:" << endl;
+                cin >> intHolder;
+                IterateSale.SetIntVar(intHolder);
+                break;
+            }
+            else if (charHolder == 'm') {
+                cin.ignore();
+                cout << "Enter NEW month purchased:" << endl;
+                cin >> intHolder;
+                IterateSale.SetMonth(intHolder);
+                break;
+            }
+
+        }
+    }
+
+    cout << "Purchase not found. Please check the purchase ID and try again." << endl;
 }
 
 

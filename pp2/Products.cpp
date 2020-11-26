@@ -68,7 +68,7 @@ void Products::OutputFile()
     int sumProductsSold = 0;
     int DollarValProductSold;
 
-    outputFS.open("MonthlySalesReport.txt"); //create file for output
+    outputFS.open("SalesYTD.txt"); //create file for output
 
     if (!outputFS.is_open()) { //if file fails to generate
         cout << "Could not generate MonthlySalesReport.txt file." << endl;
@@ -77,7 +77,7 @@ void Products::OutputFile()
 
     // Write to output grade report file
 
-    outputFS << setw(50) << "MONTHLY SALES REPORT\t" << endl;
+    outputFS << setw(50) << "PRODUCT SALES YEAR TO DATE\t" << endl;
     outputFS << setfill('*') << setw(100) << "" << endl;
     outputFS << setfill(' ');
 
@@ -108,7 +108,7 @@ void Products::OutputFile()
 
     }
 
-    outputFS << "Total Monthly Sales: $" << sumProductsSold << endl;
+    outputFS << "Total Sales Year To Date: $" << sumProductsSold << endl;
 
     outputFS.close(); // Done with file, so close it
 }

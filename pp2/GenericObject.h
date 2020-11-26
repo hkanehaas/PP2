@@ -17,6 +17,7 @@ public:
 	string GetName();
 	string GetDescriptor();
 	int GetIntVar();
+	int GetID();
 	void PrintObj();
 	static int getNextId(); //Unique IDs - from section 11.18 in zybooks;
 	int ObjectID;

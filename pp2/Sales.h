@@ -18,11 +18,12 @@ public:
 	void PrintSales();
 	void PrintSpecificClientSales(string clientName);
 	void AddNewPurchase();
-	void UpdateSale(string purchaseID);
+	void UpdateSale(int purchaseID);
 private:
 	int GetNumLines(string filePath);
 	int numLines;
 	Sale IterateSale;
+	GenericObject IterateClients;
 	Sale currSale;
 	ifstream inputFS;
 	ofstream outputFS;
